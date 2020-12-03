@@ -70,3 +70,46 @@ console.log(peek(starTrek))
 console.log(isEmpty(starTrek))
 console.log("###################")
 display(starTrek)
+
+
+/*--------------------------------------------------------*/
+/*--------------------------------------------------------*/
+/*--------------------------------------------------------*/
+/*--------------------------------------------------------*/
+/*--------------------------------------------------------*/
+/*------------------PALINDROM QUESTION--------------------*/
+
+function is_palindrome(s) {
+    s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+    // Your code goes here
+    const stack = new Stack
+    const reverseStack = new Stack
+
+    for(let i = 0; i < s.length; i++) {
+        stack.push(s[i])
+    }
+    for(let i = 0; i < s.length; i++){
+        reverseStack.push(s[s.length - 1 - i])
+    }
+    for(let i = 0; i < s.length; i++){
+        if(stack.pop() !== reverseStack.pop()){
+            return false
+        }
+        return true
+    }
+    
+}
+
+// True, true, true, false
+console.log(is_palindrome("dad"));
+console.log(is_palindrome("A man, a plan, a canal: Panama"));
+console.log(is_palindrome("1001"));
+console.log(is_palindrome("Tauhida"));
+
+
+/*--------------------------------------------------------*/
+/*--------------------------------------------------------*/
+/*--------------------------------------------------------*/
+/*--------------------------------------------------------*/
+/*--------------------------------------------------------*/
+/*---------------------MATCH PARENS-----------------------*/
