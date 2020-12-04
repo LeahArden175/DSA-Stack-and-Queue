@@ -78,3 +78,60 @@ starTrekQ.dequeue('Spock')// kirk was removed
 // peek(starTrekQ) kirk
 // isEmpty(starTrekQ) false
 // display(starTrekQ) //kirk spock uhura sulu checkov
+
+
+
+class dancePartners {
+    constructor(){
+      this.maleQ = new Queue()
+      this.femaleQ = new Queue()
+    }
+  
+    queueDancer(string){
+      const gender = string[0]
+      const name = string.split(' ')[1]
+  
+      if(gender === 'F') this.femaleQ.enqueue(name)
+      if(gender === 'M') this.maleQ.enqueue(name)
+  
+      if(this.femaleQ.first && this.maleQ.first){
+        const fDancer = this.femaleQ.dequeue()
+        const mDancer = this.maleQ.dequeue()
+        console.log(`Female Dancer is ${fDancer} and  Male Dancer is ${mDancer}`)
+      }
+  
+      if(this.femaleQ.first){
+        let count = 1
+        let current = this.femaleQ.first
+  
+        while(current.next !== null) {
+          count++;
+          current = current.next
+        }
+        console.log(`there are ${count} female dancers waiting to dance`)
+      }
+  
+      if(this.maleQ.first){
+        let count = 1
+        let current = this.maleQ.first
+  
+        while(current.next !== null) {
+          count++;
+          current = current.next
+        }
+        console.log(`there are ${count} male dancers waiting to dance`)
+      }
+    }
+  }
+  
+  const Dance = new dancePartners()
+  
+  Dance.queueDancer('F Jane');
+  Dance.queueDancer('M Frank');
+  Dance.queueDancer('M John');
+  Dance.queueDancer('M Sherlock');
+  Dance.queueDancer('F Madonna');
+  Dance.queueDancer('M David');
+  Dance.queueDancer('M Christopher');
+  Dance.queueDancer('F Beyonce');
+  
