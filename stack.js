@@ -113,3 +113,31 @@ console.log(is_palindrome("Tauhida"));
 /*--------------------------------------------------------*/
 /*--------------------------------------------------------*/
 /*---------------------MATCH PARENS-----------------------*/
+
+function matchBrackets(string){
+    if(!string.length) return null;
+  
+    let stack = new Stack()
+  
+    for(let i = 0; i < string.length; i ++){
+      if (string[i] === '(' || string[i] === '{' || string[i] === '['){
+        stack.push('(')
+      }
+      if(string[i] === ')' || string[i] === '}' || string[i] === ']'){
+        if(isEmpty(stack)){
+          console.log('missing an opening bracket')
+          return false
+        }
+        stack.pop()
+      }
+    }
+    if(!isEmpty(stack)) {
+      console.log('missing a closing bracket')
+      return false
+    }
+    return true
+  }
+  console.log(matchBrackets('{()}[([()])]'))//true
+  console.log(matchBrackets('{()[]'))// false 'missing a closing bracket'
+  console.log(matchBrackets('{]}()'))// false 'missing an opening bracket'
+  
