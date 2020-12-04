@@ -134,4 +134,19 @@ class dancePartners {
   Dance.queueDancer('M David');
   Dance.queueDancer('M Christopher');
   Dance.queueDancer('F Beyonce');
-  
+
+  function ophidianBank(queue){
+    while(queue.first){
+      let person = queue.dequeue()
+      let random = Math.random()
+      if(random < .25){
+        queue.enqueue(person)
+        console.log(`${person} paperwork is wrong`)
+      } else {
+        console.log(`${person} served`)
+      }
+    }
+    console.log('everyone served')
+  }
+
+  ophidianBank(starTrekQ)
