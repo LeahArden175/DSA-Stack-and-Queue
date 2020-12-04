@@ -23,13 +23,10 @@ class Stack {
         this.top = node
     }
     pop(data){
-        /*in order to remove the top of the stack, you have to point
-        the pointer to the next item in then stack and that next item
-        becomes the top of the stack */
-
+        if (this.top === null) return null
         const node = this.top;
         this.top = node.next;
-        return node.data
+        return node.data;
     }
 }
 
@@ -140,4 +137,78 @@ function matchBrackets(string){
   console.log(matchBrackets('{()}[([()])]'))//true
   console.log(matchBrackets('{()[]'))// false 'missing a closing bracket'
   console.log(matchBrackets('{]}()'))// false 'missing an opening bracket'
+
+
+/*--------------------------------------------------------*/
+/*--------------------------------------------------------*/
+/*--------------------------------------------------------*/
+/*--------------------------------------------------------*/
+/*--------------------------------------------------------*/
+/*----------------------SORT STACK------------------------*/
   
+function stackSort (stack) {
+    if (stack.top === null || stack.top.next === null) return stack;
+    //iterate through the given stack once and identify minValue and maxValue.
+    //push maxValue to newStack.top
+    //iterate through the given stack again to find the next largest number
+    //that is less than newStack.top
+    //once we've taken one pass through the given stack, we will push the current value
+    //of largestValue to newStack
+    //run this iteration until newStack.top === minValue  
+    
+    const newStack = new Stack();
+    let minValue = stack.top.data;
+    let maxValue = stack.top.data;
+    let currNode = stack.top;
+    while (currNode.next !== null) {
+      if (currNode.data > maxValue) maxValue = currNode.data;
+      if (currNode.data < minValue) minValue = currNode.data;
+      currNode = currNode.next;
+    }
+    if (currNode.data > maxValue) maxValue = currNode.data;
+    if (currNode.data < minValue) minValue = currNode.data;
+  
+    newStack.push(maxValue);
+  
+    while (newStack.top.data !== minValue) {
+      let currNode = stack.top;
+      let currMax = minValue;
+      
+      while (currNode.next !== null) {
+        if (currNode.data > currMax && currNode.data < newStack.top.data) {
+          currMax = currNode.data;
+        }
+        currNode = currNode.next;
+      }
+      if (currNode.data > currMax && currNode.data < newStack.top.data) {
+        currMax = currNode.data;
+      }
+      newStack.push(currMax);
+    }
+  
+    return newStack;
+  }
+
+//   function sortStack(stackA){
+//     let stackB = new Stack()
+//     while(!isEmpty(stackA)){
+//       const temp = stackA.pop()
+//       while(temp < peek(stackB)) {
+//         stackA.push(stackB.pop())
+//         console.log('STACK A', display(stackA))
+//             }
+//       stackB.push(temp)
+//     }
+//     return stackB
+//   }
+  
+  const numbers = new Stack()
+  numbers.push('10')
+  numbers.push('3')
+  numbers.push('4')
+  numbers.push('7')
+  numbers.push('8')
+  
+  display(numbers)
+  
+  display(stackSort(numbers))
